@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Calculadora</title>
+</head>
+<body>
+
+<h1>Calculadora</h1>
+
+<form accion="calculador.php" method="GET">
+
+<label>Operando1</label>
+	<input type="text" name="operando1"/>
+</br></br>
+<label>Opernado2</label>
+	<input type="text" name="operando2"/>
+</br></br>
+<label>Elige una de las opciones:</label>
+</br>
+	<input type="checkbox" id="opcion1" name="opcion1" value="Suma">
+	<label> Suma </label><br>
+	<input type="checkbox" id="opcion2" name="opcion2" value="Resta">
+	<label> Resta </label><br>
+	<input type="checkbox" id="opcion3" name="opcion3" value="Multiplicar">
+	<label> Multiplicar </label><br>
+	<input type="checkbox" id="opcion4" name="opcion4" value="Dividir">
+	<label> Dividir </label><br>
+<br/>
+<input type="submit" value="Enviar"/>
+<input type="reset" value="Borrar"/>
+
+</form>
+
+</body>
+</html>
