@@ -1,16 +1,33 @@
 <?php
 
-echo "<h1>Informacion recibida en PHP</h1>";
+echo "El method que ha usado es: ",$_SERVER['REQUEST_METHOD'],"<br>";
 
-$num1 = $_GET("operando1");
+echo "<h1>Calculadora</h1>";
 
-$num1 = $_GET("operando2");
+$num1 = $_POST["operando1"];
 
-echo "EL operando 1 es " . $num1;
+$num2 = $_POST["operando2"];
 
-echo "<br/>";
+$signo = $_POST["signo"];
 
-echo "EL operando 2 es " . $num2;
+if ($signo == "suma"){
+	
+	$solucion = $num1 + $num2;
+}
+else if ($signo == "resta"){
+	
+	$solucion = $num1 - $num2;
+}
+else if ($signo == "multiplicar"){
+	
+	$solucion = $num1 * $num2;
+}
+else if ($signo == "diviaion"){
+	
+	$solucion = $num1 / $num2;
+}
+
+echo "Resultado de la operacion : $num1 y $num2 = " . $solucion;
 
 
 ?>
