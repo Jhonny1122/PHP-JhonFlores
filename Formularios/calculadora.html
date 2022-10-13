@@ -6,7 +6,7 @@
 
 <h1>Calculadora</h1>
 
-<form accion="calculador.php" method="GET">
+<form action="calculadora.php" method="POST">
 
 <label>Operando1</label>
 	<input type="text" name="operando1"/>
@@ -16,13 +16,13 @@
 </br></br>
 <label>Elige una de las opciones:</label>
 </br>
-	<input type="checkbox" id="opcion1" name="opcion1" value="Suma">
+	<input type="radio" name="signo" value="suma">
 	<label> Suma </label><br>
-	<input type="checkbox" id="opcion2" name="opcion2" value="Resta">
+	<input type="radio" name="signo" value="resta">
 	<label> Resta </label><br>
-	<input type="checkbox" id="opcion3" name="opcion3" value="Multiplicar">
+	<input type="radio" name="signo" value="multiplicar">
 	<label> Multiplicar </label><br>
-	<input type="checkbox" id="opcion4" name="opcion4" value="Dividir">
+	<input type="radio" name="signo" value="dividir">
 	<label> Dividir </label><br>
 <br/>
 <input type="submit" value="Enviar"/>
