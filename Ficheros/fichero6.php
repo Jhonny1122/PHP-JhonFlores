@@ -16,33 +16,53 @@
 </body>
 </html>
 <?php
-/*
 
-	Nos quedamos en como verificar la ruta, el getcwd nos dice la ruta pero aun no sabemos 
-	el nombre del fichero txt, estamso pensando en hacer tipo la ip. O busca una funcion si puedes.
-
-*/
 if (isset($_POST["submit"])){
 	
 	$fichero = $_POST["fichero"] ;
 	
-	echo "<h2>Operaciones Ficheros</h2>";
+	$nomFichero = obtenerFichero ($fichero);
 	
-	echo $fichero . "<br>";
-	
+	if (file_exists($fichero)) {
+		
+		echo "Existe el fichero: " . $fichero;
+		
+		echo "<h2>Operaciones Ficheros</h2>";
+
+		echo "<b>Nombre del Fichero: </b>" . obtenerFichero ($fichero);
+
+		echo "<br>";
+		
+		echo "<b>Directorio: </b>" . getcwd ();
+
+		echo "<br>";
+		
+		echo "<b>Tamaño del Fichero: </b>" . filesize($nomFichero) . " bytes";
+
+		echo "<br>";
+		
+		echo "<b>Fecha Ultima Modificacion del Fichero: </b>" . date("F d Y H:i:s.", filemtime($nomFichero));
+
+		echo "<br>";
+	}
+	else {
+		
+		echo "No existe el fichero";
+	}
 };
 
-/*function deshacer ($a){
-	$signo = "";
-	//Primer parte antes del \
-	$a1=substr($a,0,strpos($a,$signo));
-	
-	$a=substr($a,strpos($a,'$signo')+1);
-	
-	return $signo;
-	
-};
-*/
+function obtenerFichero ($a){
+	// Obtenemos el directorio donde estamso
+    $directorio = getcwd ();
+	// Obtenemos la longitud de un string.
+	$longitudDirc = strlen($directorio);
+	// Devuelve parte de una cadena, en este caso a partir de la posicion indicada.
+	$fichero = substr($a,($longitudDirc+1));
+	// Devuelve lo que queda del string
+	return $fichero;
+}
+
+// En este caso no usamos esta funcion.
 function limpiar($data){
 	
 	$data = trim($data);
