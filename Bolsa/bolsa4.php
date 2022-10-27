@@ -33,6 +33,19 @@
 			<option value="MEDIASET">MEDIASET</option>
 		</select>
 		<br><br>
+		<label>Mostar</label>
+		<select name="mostrar">
+			<option value="ultimo">Ultimo Valor</option>
+			<option value="variacion1">Variacion %</option>
+			<option value="variacion2">Variacion</option>
+			<option value="anual">Ac%Anual</option>
+			<option value="maximo">Maximo</option>
+			<option value="minimo">Minimo</option>
+			<option value="volumen">Volumen</option>
+			<option value="capital">Capitalizacion</option>
+			<option value="hora">Hora</option>
+		</select>
+		<br><br>
 		<input type="submit" name="submit" value="Visualizar"/>
 		<input type="reset" name="reset" value="Borrar"/>
 	</form>
@@ -41,6 +54,7 @@
 include("funciones_bolsa.php");
 if (isset($_POST["submit"])){
 	$valor = limpiar($_POST["valor"]);
-	echo mostrarUMM($valor);
+	$mostrar = limpiar($_POST["mostrar"]);
+	echo mostarOpcion($valor,$mostrar);
 };
 ?>
