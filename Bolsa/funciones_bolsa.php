@@ -187,9 +187,129 @@ function mostrarTotal($a){
 };	
 
 //------------------- Funcion ejercicio 6 -------------------//
+/*Explicacion:
+Nos creamos unos arrays y algunas variables.
+Creamos un foreach para recorrer el array asociativo, donde guardaremos algunos valores dentro del array, ademas reeemplazaremos algunos elementos por otros.
+Por ultimo, usaremos otros bucles para comprobar cual es el mayor o menor de los arrays.
+*/
 function mostrarCVC(){
 	
+	//Variables declaradas//
+	$lineas = file("ibex35.txt");
 	
+	$arrayMax=array();
+	
+	$arrayMin=array();
+	
+	$arrayVol=array();
+	
+	$arrayCapital=array();
+	
+	$mayorMax=0;
+	
+	$menorMin=0;
+	
+	foreach ($lineas as $num_linea => $linea) {
+		
+		$arrayMax[$num_linea]=rtrim(substr($linea, 60, 8));
+		
+		$arrayMax[$num_linea]=str_replace(",",".",$arrayMax[$num_linea]);
+		
+		$arrayMin[$num_linea]=rtrim(substr($linea, 69, 8));
+		
+		$arrayMin[$num_linea]=str_replace(",",".",$arrayMin[$num_linea]);
+		
+		$arrayVol[$num_linea]=rtrim(substr($linea, 78, 12));
+		
+		$arrayVol[$num_linea]=str_replace(".","",$arrayVol[$num_linea]);
+		
+		$arrayCapital[$num_linea]=rtrim(substr($linea, 91, 8));
+		
+		$arrayCapital[$num_linea]=str_replace(".","",$arrayCapital[$num_linea]);
+	};
+	//Bucle para sacar el Maximo //
+	for ($i = 0 ; $i < count($arrayMax) ; $i++){
+		
+		if ($mayorMax < $arrayMax[$i]){
+			
+			$mayorMax=$arrayMax[$i];
+		};
+	};
+	
+	echo "El valor con la máxima cotización es $mayorMax" . "<br>";
+	
+	$mayorMax=0;
+	
+	//Bucle para sacar el minimo //
+	array_shift($arrayMin); // Elimina el primer elemento del array, como en este caso es el titulo Min. lo quitamos //
+	
+	$menorMin=pow(10,10);
+	
+	for ($i = 0 ; $i < count($arrayMin) ; $i++){
+		
+		if ($menorMin > $arrayMin[$i]){
+			
+			$menorMin=$arrayMin[$i];
+		};
+	};
+	
+	echo "El valor con la mínima cotización es $menorMin" . "<br>";
+	
+	$menorMin=0;
+	
+	//Bucle para sacar el maximo y minimo del Volumen //
+	array_shift($arrayVol);
+	
+	for ($i = 0 ; $i < count($arrayVol) ; $i++){
+		
+		if ($mayorMax < $arrayVol[$i]){
+			
+			$mayorMax=$arrayVol[$i];
+		};
+	};
+	
+	echo "El valor con el mayor volumen negociado es $mayorMax" . "<br>";
+	
+	$mayorMax=0;
+	
+	$menorMin=pow(10,10);
+	
+	for ($i = 0 ; $i < count($arrayVol) ; $i++){
+		
+		if ($menorMin > $arrayVol[$i]){
+			
+			$menorMin=$arrayVol[$i];
+		};
+	};
+	
+	echo "El valor con el menor volumen negociado es $menorMin" . "<br>";
+	
+	$menorMin=0;
+	
+	//Bucle para sacar el maximo y minimo de la Capital //	
+	array_shift($arrayCapital);
+	
+	for ($i = 0 ; $i < count($arrayCapital) ; $i++){
+		
+		if ($mayorMax < $arrayCapital[$i]){
+			
+			$mayorMax=$arrayCapital[$i];
+		};
+	};
+	
+	echo "El valor con la mayor capitalizacion es $mayorMax" . "<br>";
+	
+	$menorMin=pow(10,10);
+	
+	for ($i = 0 ; $i < count($arrayCapital) ; $i++){
+		
+		if ($menorMin > $arrayCapital[$i]){
+			
+			$menorMin=$arrayCapital[$i];
+		};
+	};
+	
+	echo "El valor con la menor capitalizacion es $menorMin" . "<br>";
 };	
 
 //------------------- Funcion para depurar variables -------------------//
