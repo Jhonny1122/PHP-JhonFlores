@@ -97,6 +97,8 @@ function jugar ($a, $b , $c , $d){
 	
 	$juego=array();
 	
+	$mayor=0;
+	
 	if ($a == true & $b == true){
 		
 		echo "<table border=1>"; 
@@ -105,7 +107,7 @@ function jugar ($a, $b , $c , $d){
 			
 			$numero = array_rand($c);
 			
-			$juego[$d[$i]]=$numero;
+			$juego[$d[$i]]=($numero+1);
 		};
 		
 		foreach($juego as $x => $x_valor){
@@ -113,13 +115,30 @@ function jugar ($a, $b , $c , $d){
 			echo "<tr><td>Jugadore : $x </td><td> Numero: $x_valor</td>" . "<br>";
 		}
 		
-		echo "</table>";
+		echo "</table>" . "<br>";
+		
+		foreach($juego as $x => $x_valor){
+			
+			if ($x_valor > $mayor){
+				
+				$mayor=$x_valor;
+			};
+		};
+		
+		foreach($juego as $x => $x_valor){
+			
+			if ($mayor == $x_valor){
+				
+				echo "El jugador $x es el ganador." . "<br>";
+			};
+		};
+		
 	}
 	else {
 		
 		echo "No podemos empezar el juego. Vuelve a introducir los valore." . "<br>";
 	}
-	
+/*El juego funciona pero solo con un dado, si puedes intentar conseguirlo con mas de 1 dado*/	
 };
 
 ?>
