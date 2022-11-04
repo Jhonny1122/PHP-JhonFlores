@@ -16,8 +16,7 @@ $jugadores=array();
 // Llamar a las funciones //
 $jugadores=validarJugadores($nombre1,$nombre2,$nombre3,$nombre4,$nombre5,$nombre6,$nombre7,$nombre8,$jugadores);
 $correctoJugadores=validarNumJugadores($jugadores);
-var_dump($jugadores);
-var_dump($baraja);
+poker($jugadores,$correctoJugadores,$baraja);
 }
 // Funcion validar jugadores //
 function validarJugadores($j1,$j2,$j3,$j4,$j5,$j6,$j7,$j8,$a){
@@ -79,8 +78,6 @@ function validarNumJugadores($a){
 	else{
 		
 		$correcto = true;
-		
-		echo "Cambio a true";
 	}
 	
 	return $correcto;
@@ -88,12 +85,36 @@ function validarNumJugadores($a){
 // Funcion dar importe al bombo //
 
 // Funcion jugar al poker //
-function poker(){
+function poker($a,$bien1,$b){
 /* Dentro de un bucle , recorrer todos los jugadores y asiganrles 4 cartas al azar */
-
 /* Cuando se asigne la carta que se elimine esa carta del array de cartas */
-
 /* Cuando termine de asignar cartas, recorrer el array de cartas de cada jugador y comprobar los resultados */
+if($bien1 == true){
+	
+	$array1=array();
+	
+	for ($i = 0 ; $i < count($a) ; $i++){
+		
+		echo "Jugador : $a[$i]" . "<br>";
+		
+		for ($j = 0 ; $j < 4 ; $j++){
+			
+			$numero=array_rand($b);
+			
+			$array1[$j]=$numero;
+		}
+		
+		$a[$i]=$array1;
+		
+		var_dump($a[$i]);
+		
+	}
+	
+}
+else{
+	
+	echo "No se puede empezar el juego, vuelva a introducir los datos." . "<br>";
+}
 
 /* Se obtendra ek nombre del ganador y dependiendo de que haya sacado se ganara un % del premio */
 };
