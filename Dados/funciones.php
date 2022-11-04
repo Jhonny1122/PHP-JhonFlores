@@ -85,7 +85,7 @@ function jugar($bien1,$bien2,$a,$numdados,$dados){
 	
 	$suma=0;
 	
-	$mayor=0;
+	$arraySuma=array();
 	
 	$jugador=0;
 	
@@ -118,32 +118,68 @@ function jugar($bien1,$bien2,$a,$numdados,$dados){
 			if ($esigual == true){		// Condicion , si son iguales cambia la variable a 100 //
 				
 				$suma=100;
+				
+				$arraySuma[$i]=$suma;
 			}
 			else{
 				
 				$suma= array_sum($array1);	// Sumamos el array y lo almacenamos en una variable //
+				
+				$arraySuma[$i]=$suma;
 			}
 
 			echo "Jugador " . ($i+1) . " = " .$suma . "<br>";
-			
-			if($suma > $mayor){		// Condicion donde comprobamos que jugador tiene el mayoru numero //
-				
-				$mayor=$suma;
-				
-				$jugador=$i;
-			}
 			
 		};
 		
 		echo "</table>";
 		
-		echo "Ganador : Jugador " . ($jugador+1) ;
+		return $arraySuma;
 		
 	}
 	// Si alguno de las dos es falsa no se inicia y se manda mensaje //
 	else{
 		
 		echo "Vuelve a introducir los datos, para poder empezar el juego.";
+	}
+	
+};
+
+// Funcion sacar ganador //
+function ganador ($a,$bien1,$bien2){
+	
+	$mayor=0;
+	
+	$contador=0;
+	
+	if ($bien1 == true && $bien2 == true){
+	
+		for ($i = 0 ; $i < count($a) ; $i++){
+		
+		if ($a[$i] > $mayor){
+			
+			$mayor=$a[$i];
+		}
+		
+		}
+		
+		for ($i = 0 ; $i < count($a) ; $i++){
+			
+			if ($a[$i] == $mayor){
+				
+				$contador++;
+			}
+		};
+		
+		if($contador >= 2 ){
+			
+			echo "Hay $contador ganadores.";
+		}
+		else {
+			
+			echo "Hay un ganador.";
+		}
+		
 	}
 	
 };
