@@ -113,7 +113,16 @@ function jugar($bien1,$bien2,$a,$numdados,$dados){
 			
 			$a[$i] = $array1;		// Asiganamos el array al jugador //
 			
-			$suma= array_sum($array1);	// Sumamos el array y lo almacenamos en una variable //
+			$esigual = count(array_unique($array1))===1;	// Linea donde comprueba si todos los elementos son repetidos //
+			
+			if ($esigual == true){		// Condicion , si son iguales cambia la variable a 100 //
+				
+				$suma=100;
+			}
+			else{
+				
+				$suma= array_sum($array1);	// Sumamos el array y lo almacenamos en una variable //
+			}
 
 			echo "Jugador " . ($i+1) . " = " .$suma . "<br>";
 			
@@ -122,13 +131,6 @@ function jugar($bien1,$bien2,$a,$numdados,$dados){
 				$mayor=$suma;
 				
 				$jugador=$i;
-			}
-			
-			$esigual = count(array_unique($array1))===1;	// Linea donde comprueba si todos los elementos son repetidos //
-			
-			if ($esigual == true){		// Condicion , si son iguales cambia la variable a 100 //
-				
-				$suma=100;
 			}
 			
 		};
