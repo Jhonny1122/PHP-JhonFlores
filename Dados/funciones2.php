@@ -148,15 +148,30 @@ function jugar($bien1,$bien2,$a,$numdados,$dados){
 // Funcion sacar ganador //
 function ganador ($a){
 	
-	$valores = array_values(array_diff_assoc($a, array_unique($a)));
+	$mayor=0;
 	
-	if (empty($valores)){
+	$contador=0;
+	
+	for ($i = 0 ; $i < count($a) ; $i++){
 		
-		echo "Hay un ganador.";
+		if ($a[$i] > $mayor){
+			
+			$mayor=$a[$i];
+		}
+		
 	}
-	else {
+	
+	for ($i = 0 ; $i < count($a) ; $i++){
 		
-		echo "Hay mas de un ganador.";
+		if ($a[$i] == $mayor){
+			
+			$contador++;
+		}
+	};
+	
+	if($contador >= 2 ){
+		
+		echo "Hay $contador ganadores";
 	}
 	
 };
