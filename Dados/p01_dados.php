@@ -11,11 +11,12 @@ if (isset($_POST["tirar"])){
 	$dados=array(1,2,3,4,5,6);
 	$correctoJugadores=false;
 	$correctoDados=false;
+	$arraySuma=array();
 	
 	$arrayJugadores = validarJugadores($jug1,$jug2,$jug3,$jug4,$arrayJugadores);
 	$correctoJugadores = validarLongitud($arrayJugadores);
 	$correctoDados=validarDados($numdados);
-	jugar($correctoDados,$correctoJugadores,$arrayJugadores,$numdados,$dados);
-	
+	$arraySuma=jugar($correctoDados,$correctoJugadores,$arrayJugadores,$numdados,$dados);
+	ganador($arraySuma,$correctoDados,$correctoJugadores);
 };
 ?>
