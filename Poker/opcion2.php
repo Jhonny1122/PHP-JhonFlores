@@ -118,6 +118,8 @@ if($bien1 == true){
 			$array1[$j]=$pos;
 		}
 		
+		sort($array1);
+		
 		$a[$i]=$array1;
 		
 		echo "</td></tr>";		
@@ -137,48 +139,51 @@ else{
 };
 /* Comparar las cartas y decir ganador */
 function ganador ($a){
+	
 	var_dump($a);
-	$contador1=0;
-	$contadorJ=0;
-	$contadorK=0;
-	$contadorQ=0;
-	foreach ($a as $x => $x_valor){
+	
+	$contador=0;
+	
+	for($i = 0 ; $i < count($a) ; $i++){
 		
-		echo "Jugador $x: ";
+		echo "Jugador $i :";
 		
-		foreach($x_valor as $j => $j_valor){
+		for($j = 0 ; $j < 3 ; $j++){
 			
-			if($j_valor == "1"){
+			if($a[$i][($j+1)]===$a[$i][$j]){
 				
-				$contador1++;
+				$contador++;
 			}
-			if($j_valor == "J"){
-				
-				$contadorJ++;
-			}
-			if($j_valor == "Q"){
-				
-				$contadorQ++;
-			}
-			if($j_valor == "K"){
-				
-				$contadorK++;
-			}
-			
+
 		}
 		
-		echo "<br>";
-		
-		echo $contador1 . "<br>";
-		
-		echo $contadorJ . "<br>";
-		
-		echo $contadorQ . "<br>";
-		
-		echo $contadorK . "<br>";
+		if($contador === 1){
+			
+			echo "El jugador $i tiene pareja" . "<br>";
+			
+		}
+		if($contador === 2){
+			
+			echo "El jugador $i tiene doble pareja" . "<br>";
+
+		}
+		if($contador === 3){
+			
+			echo "El jugador $i tiene trio" . "<br>";
+
+		}
+		if($contador === 4){
+			
+			echo "El jugador $i tiene poker" . "<br>";
+
+		}
 		
 		$contador=0;
+	
+		
+		echo "<br>";
 	}
+	
 	
 };
 // Funcion limpiar variables //
