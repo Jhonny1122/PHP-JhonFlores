@@ -93,22 +93,40 @@ if($bien1 == true){
 	
 	$array1=array();
 	
+	$contador=0;
+	
+	echo "<h1>Juego de POKER</h1>";
+	
+	echo "<table border=1>";
+	
 	for ($i = 0 ; $i < count($a) ; $i++){
 		
-		echo "Jugador : $a[$i]" . "<br>";
+		echo "<tr><td>Jugador : $a[$i]</td>";
 		
 		for ($j = 0 ; $j < 4 ; $j++){
 			
-			$numero=array_rand($b);
+			$pos=shuffle($b); // Cogemos un valor aleatorio del array $b(baraja) //
 			
-			$array1[$j]=$numero;
+			$pos=$b[$j];
+			
+			echo "<td>Carta " . ($j+1) . " : $pos</td>";
+			
+			$pos=substr($pos,0,1);
+			
+			$array1[$j]=$pos;
 		}
 		
 		$a[$i]=$array1;
 		
-		var_dump($a[$i]);
+		echo "</td></tr>";
+		
+		
 		
 	}
+	
+	echo "</table>";
+	
+	var_dump($a);
 	
 }
 else{
@@ -116,7 +134,6 @@ else{
 	echo "No se puede empezar el juego, vuelva a introducir los datos." . "<br>";
 }
 
-/* Se obtendra ek nombre del ganador y dependiendo de que haya sacado se ganara un % del premio */
 };
 // Funcion limpiar variables //
 function limpiar($data){
