@@ -1,0 +1,5 @@
+Jugador = 1****Puntuacion = 12.5****
+Jugador = 2****Puntuacion = 21****
+Jugador = 3****Puntuacion = 32****
+Jugador = 4****Puntuacion = 16****
+
