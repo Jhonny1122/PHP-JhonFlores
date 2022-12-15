@@ -183,7 +183,7 @@
 	function aprovProd($num_alm,$id_prod,$cant_alm,$conn){
 		
 		$repeDato=false;
-		
+		//Instruccion SQL para guardar los datos num_almacen , id_producto y cantidad , segun indicado el cliente //
 		$stmt = $conn->prepare("SELECT * FROM ALMACENA WHERE NUM_ALMACEN=:num_alm AND ID_PRODUCTO=:id_prod");
 		
 		$stmt-> bindParam(":num_alm",$num_alm);
@@ -195,30 +195,30 @@
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);		
 		
 		$resultado=$stmt->fetchAll();
-								 
+		//Recorremos el array asociativo//						 
 		foreach($resultado as $row) {
-			
+			//Guardamos los valores
 			$num_almacen=$row["NUM_ALMACEN"];
 			
 			$id_producto=$row["ID_PRODUCTO"];
 			
 			$cant_almacena=$row["CANTIDAD"];
-			
+			//Condicion donde comprobamos si el id_producto y el num_almacen ya estan en la base de datos//
 			if($num_almacen == $num_alm && $id_producto == $id_prod){
-				
+				//Valor a true
 				$repeDato=true;
 			}
 			else{
-				
+				//Valor false
 				$repeDato=false;
 			}
 
 		}
-		
+		//Si la variable es true//
 		if($repeDato){
-			
+			//Variable que guarda la suma de la cantidad almacenada en la BBDD y la cantidad a aprovisionar//
 			$total=$cant_almacena+$cant_alm;
-			
+			//Instrucion SQL donde guardamos la nueva cantidad en el num_almacen e id_producto indicado//
 			$stmt = $conn->prepare("UPDATE ALMACENA SET CANTIDAD=:cant_total WHERE NUM_ALMACEN=:num_alm AND ID_PRODUCTO=:id_prod");
 		
 			$stmt-> bindParam(":num_alm",$num_alm);
@@ -231,7 +231,7 @@
 			
 		}
 		else{
-			
+			//Instruccion SQL donde se guarda los datos pasados//
 			$stmt = $conn->prepare("INSERT INTO ALMACENA (NUM_ALMACEN,ID_PRODUCTO,CANTIDAD) VALUES (:num_alm,:id_prod,:cant)");
 		
 			$stmt-> bindParam(":num_alm",$num_alm);
@@ -244,7 +244,7 @@
 			
 		}
 		
-		
+		//Imprimimos mensajes//
 		echo "<h3>Informacion sobre el Resgistro</h3>";
 		
 		$stmt = $conn->prepare("SELECT LOCALIDAD FROM ALMACEN WHERE NUM_ALMACEN=:num_alm");
@@ -556,5 +556,4 @@
 		return $data;
 	};
 	
-
 ?>
