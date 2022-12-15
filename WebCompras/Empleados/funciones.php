@@ -435,7 +435,7 @@
 		$fech_comp_arr=array();
 		
 		//Instruccion SQL donde cogemos los datos de ID y Fecha del nif y fechas indicados.
-		$stmt = $conn->prepare("SELECT ID_PRODUCTO,FECHA_COMPRA FROM COMPRA WHERE NIF=:nif_cliente AND FECHA_COMPRA >:fecha_desde AND FECHA_COMPRA <=:fecha_hasta");	
+		$stmt = $conn->prepare("SELECT ID_PRODUCTO,FECHA_COMPRA FROM COMPRA WHERE NIF=:nif_cliente AND FECHA_COMPRA >=:fecha_desde AND FECHA_COMPRA <=:fecha_hasta");	
 		
 		$stmt-> bindParam(":nif_cliente",$nif_cliente);
 		
