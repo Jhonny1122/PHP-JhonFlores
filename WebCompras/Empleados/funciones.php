@@ -182,15 +182,68 @@
 	
 	function aprovProd($num_alm,$id_prod,$cant_alm,$conn){
 		
-		$stmt = $conn->prepare("INSERT INTO ALMACENA (NUM_ALMACEN,ID_PRODUCTO,CANTIDAD) VALUES (:num_alm,:id_prod,:cant)");
+		$repeDato=false;
+		
+		$stmt = $conn->prepare("SELECT * FROM ALMACENA WHERE NUM_ALMACEN=:num_alm AND ID_PRODUCTO=:id_prod");
 		
 		$stmt-> bindParam(":num_alm",$num_alm);
 		
 		$stmt-> bindParam(":id_prod",$id_prod);
 		
-		$stmt-> bindParam(":cant",$cant_alm);
-		
 		$stmt->execute();
+		
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);		
+		
+		$resultado=$stmt->fetchAll();
+								 
+		foreach($resultado as $row) {
+			
+			$num_almacen=$row["NUM_ALMACEN"];
+			
+			$id_producto=$row["ID_PRODUCTO"];
+			
+			$cant_almacena=$row["CANTIDAD"];
+			
+			if($num_almacen == $num_alm && $id_producto == $id_prod){
+				
+				$repeDato=true;
+			}
+			else{
+				
+				$repeDato=false;
+			}
+
+		}
+		
+		if($repeDato){
+			
+			$total=$cant_almacena+$cant_alm;
+			
+			$stmt = $conn->prepare("UPDATE ALMACENA SET CANTIDAD=:cant_total WHERE NUM_ALMACEN=:num_alm AND ID_PRODUCTO=:id_prod");
+		
+			$stmt-> bindParam(":num_alm",$num_alm);
+			
+			$stmt-> bindParam(":id_prod",$id_prod);
+			
+			$stmt-> bindParam(":cant_total",$total);
+			
+			$stmt->execute();
+			
+		}
+		else{
+			
+			$stmt = $conn->prepare("INSERT INTO ALMACENA (NUM_ALMACEN,ID_PRODUCTO,CANTIDAD) VALUES (:num_alm,:id_prod,:cant)");
+		
+			$stmt-> bindParam(":num_alm",$num_alm);
+			
+			$stmt-> bindParam(":id_prod",$id_prod);
+			
+			$stmt-> bindParam(":cant",$cant_alm);
+			
+			$stmt->execute();
+			
+		}
+		
 		
 		echo "<h3>Informacion sobre el Resgistro</h3>";
 		
@@ -502,12 +555,6 @@
 		
 		return $data;
 	};
-	
-	
-	
-	
-	
-	
 	
 
 ?>
