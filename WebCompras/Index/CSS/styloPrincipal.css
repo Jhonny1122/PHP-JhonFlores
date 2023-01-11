@@ -1,0 +1,30 @@
+body{
+    background: linear-gradient(to right, rgb(169, 164, 173), white);
+}
+
+div{
+    background-color: white;
+    position:absolute;
+    margin-top: 5%;
+    margin-left: 30%;
+    border-radius: 20px 20px 20px;
+    box-shadow: 7px 7px 15px 7px #0a0502;
+    height: 60%;
+}
+
+.registro{
+    position:relative;
+    width: 40%;
+    font-family:'Times New Roman', Times, serif;
+    text-align: center;
+    font-size:large;
+}
+
+.login{
+    position:relative;
+    width: 40%;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    font-size:large;
+}
+
